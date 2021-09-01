@@ -9,7 +9,7 @@ export interface HeaderProps {
 export const Header: React.FC = () => {
   return (
     <div className="header">
-      <img src={logoUrl} alt="Pokemon-Logo" className="w-32 md:w-48 lg:w-64" />
+      <img src={logoUrl} alt="Pokemon-Logo" className="w-40 md:w-48 lg:w-64" />
     </div>
   );
 };

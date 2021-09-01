@@ -1,26 +1,18 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React from "react";
-import { useState } from "react";
-import { useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { ItemType } from "../../api";
+import React, { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
+import { RootState } from "../../app/rootReducer";
 import { SingleCard } from "../SingleCard/SingleCard";
-import { loadPokemons } from "./ContainerCards.slice";
 
 interface ContainerCardsProps {
-  pokemons: ItemType[];
-  page: number;
+  // pokemons: ItemType[];
 }
 
-export const ContainerCards: React.FC<ContainerCardsProps> = ({
-  pokemons,
-  page,
-}) => {
-  const dispatch = useDispatch();
+export const ContainerCards: React.FC<ContainerCardsProps> = () => {
+  const pokemons = useSelector(
+    (state: RootState) => state.containerCards.pokemons
+  );
   const [cards, setCards] = useState(pokemons);
-  useEffect(() => {
-    dispatch(loadPokemons());
-  }, []);
   useEffect(() => {
     setCards(pokemons);
   }, [pokemons]);

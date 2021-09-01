@@ -34,9 +34,9 @@ const ContainerCardsSlice = createSlice({
 export const { setPokemons, setPokemonsLoading } = ContainerCardsSlice.actions;
 
 export const loadPokemons =
-  (start?: number): AppThunk =>
+  (start?: number, limit?: number): AppThunk =>
   async (dispatch: AppDispatch) => {
-    const pokemons = await getPokemons(start || 0);
+    const pokemons = await getPokemons(start || 0, limit || 20);
     dispatch(ContainerCardsSlice.actions.setPokemons(pokemons));
     dispatch(ContainerCardsSlice.actions.setPokemonsLoading(false));
   };

@@ -1,11 +1,13 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Card from "antd/lib/card";
 import Avatar from "antd/lib/avatar/avatar";
 import Meta from "antd/lib/card/Meta";
-import { ItemType, PokemonType } from "../../api";
-import { useEffect } from "react";
 import axios from "axios";
+import { ItemType, PokemonType } from "../../api";
+import { useHistory } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { setStorePokemon } from "./SingleCard.slice";
 
 export interface SingleCardProps {
   item: ItemType;
@@ -18,8 +20,12 @@ const capitalizeFirstLetter = (word: string): string => {
 export const SingleCard: React.FC<SingleCardProps> = ({ item }) => {
   const { url } = item;
 
+  const dispatch = useDispatch();
+  const history = useHistory();
+
   const [pokemon, setPokemon] = useState<PokemonType>();
   const [loading, setLoading] = useState<boolean>(false);
+  const [showBall, setShowBall] = useState<boolean>(false);
 
   useEffect(() => {
     setLoading(true);
@@ -29,16 +35,34 @@ export const SingleCard: React.FC<SingleCardProps> = ({ item }) => {
       .finally(() => setLoading(false));
   }, []);
 
+  const handlePokemonClick = () => {
+    dispatch(setStorePokemon(pokemon));
+    history.push(`pokemon/${pokemon?.id}`);
+  };
+
   return pokemon ? (
     <Card
-    className="w-72 mt-4 bg-yellow-primary border-4 border-yellow-dirty rounded-3xl shadow-lg"
+      className="card"
       // style={{ width: 300, marginTop: 16, background: "white" }}
       loading={loading}
+      onMouseEnter={() => setShowBall(true)}
+      onMouseLeave={() => setShowBall(false)}
+      onClick={handlePokemonClick}
       cover={
-        <img
-          alt={pokemon.name}
-          src={pokemon.sprites?.other["official-artwork"].front_default}
-        />
+        <div className="relative flex flex-col justify-center items-center">
+          {showBall && (
+            <>
+              <div className="ballTop sha" />
+              <div className="ballBottom shadow-lg" />
+              <div className="ballCenter" />
+            </>
+          )}
+          <img
+            className="z-20"
+            alt={pokemon.name}
+            src={pokemon.sprites?.other["official-artwork"].front_default}
+          />
+        </div>
       }
     >
       <Meta

@@ -9,7 +9,7 @@ export const API = async (
     "Content-Type": contentType,
   };
   const req = axios({ method: "GET", url, headers });
-  return req.then((res) => res.data.results);
+  return req.then((res) => res.data);
 };
 
 export * from "./pokeApi";
