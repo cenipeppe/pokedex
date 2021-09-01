@@ -31,7 +31,7 @@ export const HomePage: React.FC = () => {
     <Pagination
       className="pagination"
       current={pageNumber}
-      pageSize={30}
+      pageSize={20}
       total={900}
       onChange={onPageChange}
       disabled={loading}
