@@ -1,13 +1,38 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
+@import "~antd/dist/antd.css";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+h1 {
+  @apply font-bold text-2xl md:text-3xl lg:text-4xl;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+strong,
+span,
+b,
+i,
+u,
+li {
+  @apply text-yellow-primary;
+}
+.app {
+  @apply bg-red-primary min-h-screen;
+}
+.header {
+  @apply px-4 md:px-8 lg:px-16 py-2 flex justify-around items-center bg-red-dark shadow-lg;
+}
+.page {
+  @apply flex flex-col justify-center items-center gap-8 w-11/12 md:w-10/12 h-full mx-auto py-4 md:py-6 lg:py-8;
+}
+.ant-select-selection-item {
+  @apply text-blue-dark;
+}
+.pagination {
+  @apply px-4 py-2 bg-yellow-dirty rounded-md shadow-md;
 }
