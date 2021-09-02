@@ -26,10 +26,12 @@ img {
   @apply bg-red-primary min-h-screen;
 }
 .header {
-  @apply px-4 md:px-8 lg:px-16 py-2 flex justify-around items-center bg-red-dark shadow-lg;
+  @apply px-4 md:px-8 lg:px-16 py-2 flex justify-around 
+  items-center bg-red-dark shadow-lg;
 }
 .page {
-  @apply flex flex-col justify-center items-center gap-8 w-11/12 md:w-10/12 h-full mx-auto py-4 md:py-6 lg:py-8;
+  @apply flex flex-col justify-center items-center gap-8 
+  w-11/12 md:w-10/12 h-full mx-auto py-4 md:py-6 lg:py-8;
 }
 .ant-select-selection-item {
   @apply text-blue-dark;
@@ -38,16 +40,24 @@ img {
   @apply px-4 py-2 bg-yellow-dirty rounded-md shadow-md;
 }
 .card {
-  @apply w-72 mt-4 bg-yellow-primary transition duration-500 hover:bg-blue-light border-4 border-yellow-dirty hover:border-blue-dark rounded-3xl shadow-lg;
+  @apply w-72 mt-4 bg-yellow-primary transition duration-500
+   hover:bg-blue-light border-4 border-yellow-dirty 
+   hover:border-blue-dark rounded-3xl shadow-lg;
 }
 .ballTop {
-  @apply absolute px-24 py-12 rounded-t-full bg-gradient-to-r from-red-primary via-red-primary to-red-dark border-b-8 border-black;
+  @apply absolute px-24 py-12 rounded-t-full bg-gradient-to-r
+   from-red-primary via-red-primary to-red-dark border-b-8 border-black;
   margin-top: -6rem;
 }
 .ballBottom {
-  @apply absolute px-24 py-12 rounded-b-full bg-gradient-to-r from-white via-white to-grey-light border-t-8 border-black;
+  @apply absolute px-24 py-12 rounded-b-full bg-gradient-to-r from-white
+   via-white to-grey-light border-t-8 border-black;
   margin-top: 6rem;
 }
 .ballCenter {
   @apply absolute p-5 rounded-full border-8 border-black bg-white;
+}
+.pokemonContainer {
+  @apply w-full h-full bg-yellow-primary border-4 border-yellow-dirty
+  rounded-3xl flex flex-col justify-center items-center shadow-xl;
 }

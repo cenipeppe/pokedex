@@ -8,14 +8,11 @@ import { ItemType, PokemonType } from "../../api";
 import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setStorePokemon } from "./SingleCard.slice";
+import { capitalizeFirstLetter } from "../../utils";
 
 export interface SingleCardProps {
   item: ItemType;
 }
-
-const capitalizeFirstLetter = (word: string): string => {
-  return word.charAt(0).toUpperCase() + word.slice(1);
-};
 
 export const SingleCard: React.FC<SingleCardProps> = ({ item }) => {
   const { url } = item;

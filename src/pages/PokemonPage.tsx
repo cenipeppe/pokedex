@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 // import { useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
-import { getPokemon } from "../api";
+import { getPokemonById } from "../api";
 import { PokemonType } from "../api/pokeApi/pokeApi.types";
 import { RootState } from "../app/rootReducer";
 import { Loader, LoaderSize } from "../components";
@@ -30,7 +30,7 @@ export const PokemonPage: React.FC = () => {
       setPokemon(pkmn);
     } else {
       setLoading(true);
-      getPokemon(Number(id))
+      getPokemonById(Number(id))
         .then((res) => setPokemon(res))
         .finally(() => setLoading(false));
     }
@@ -78,7 +78,7 @@ export const PokemonPage: React.FC = () => {
         </Tooltip>
       </div>
       {pokemon && !loading && <Pokemon pokemon={pokemon} />}
-      {loading && <Loader size={LoaderSize.xxl} />}
+      {loading && <Loader size={LoaderSize.lg} />}
     </div>
   );
 };

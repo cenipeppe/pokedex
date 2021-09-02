@@ -51,14 +51,14 @@ export const HomePage: React.FC = () => {
     <div className="page">
       {renderPagination}
       {loading ? (
-        <Loader size={LoaderSize.xxl} />
+        <Loader size={LoaderSize.lg} />
       ) : (
         <>
           <h1>
             Pokemons from #{(pageNumber - 1) * 20 + 1} to #
             {pageNumber !== 45 ? pageNumber * 20 : 898}
           </h1>
-          <ContainerCards /* pokemons={pokemons} */ />
+          <ContainerCards />
         </>
       )}
       {renderPagination}
