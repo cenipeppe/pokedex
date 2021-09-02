@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../app/rootReducer";
 import { ContainerCards } from "../components/ContainerCards/ContainerCards";
@@ -10,13 +10,19 @@ import {
 } from "../components/ContainerCards/ContainerCards.slice";
 import { Loader, LoaderSize } from "../components";
 import { setPage } from "./Pages.slice";
+import Search from "antd/lib/input/Search";
+import { getPokemon } from "../api";
+import { setStorePokemon } from "../components/SingleCard/SingleCard.slice";
+import { useHistory } from "react-router";
+import { message } from "antd";
 
 export const HomePage: React.FC = () => {
   const dispatch = useDispatch();
+  const history = useHistory();
 
-  // const pokemons = useSelector(
-  //   (state: RootState) => state.containerCards.pokemons
-  // );
+  const [searchValue, setSearchValue] = useState<string>("");
+  const [searchLoading, setSearchLoading] = useState<boolean>(false);
+
   const loading = useSelector(
     (state: RootState) => state.containerCards.loading
   );
@@ -47,8 +53,33 @@ export const HomePage: React.FC = () => {
       showSizeChanger={false}
     />
   );
+  const handleSearch = (input: string) => {
+    setSearchLoading(true);
+    getPokemon(input)
+      .then((res) => {
+        dispatch(setStorePokemon(res));
+        history.push(`/pokemon/${res.id}`);
+        window.scrollTo({ top: 0 });
+      })
+      .catch(() => {
+        setSearchValue("");
+        setSearchLoading(false);
+        message.warn(
+          "Please enter a valid name or a number between 1 and 898.",
+          5
+        );
+      });
+  };
   return (
     <div className="page">
+      <Search
+        className="w-56 sm:w-80 lg:w-96 shadow-xl"
+        value={searchValue}
+        onChange={(e) => setSearchValue(e.target.value)}
+        placeholder="Type in a name or number"
+        onSearch={handleSearch}
+        disabled={searchLoading}
+      />
       {renderPagination}
       {loading ? (
         <Loader size={LoaderSize.lg} />

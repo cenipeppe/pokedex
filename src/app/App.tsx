@@ -14,11 +14,10 @@ const App: React.FC = () => {
 
         <BrowserRouter>
           <Switch>
-            <Route path="/pokemon/:id">
+            <Route path={`/pokemon/:id`}>
               <PokemonPage />
             </Route>
-            <Route path="/dashboard">Dashboard</Route>
-            <Route exact path="/">
+            <Route path={`/`}>
               <HomePage />
             </Route>
           </Switch>

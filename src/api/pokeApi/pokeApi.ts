@@ -10,7 +10,9 @@ export const getPokemons = async (
   return res.results;
 };
 
-export const getPokemonById = (id: number): Promise<PokemonType> => {
-  const url = `https://pokeapi.co/api/v2/pokemon/${id}`;
+export const getPokemon = (
+  input: number | string
+): Promise<PokemonType> => {
+  const url = `https://pokeapi.co/api/v2/pokemon/${input}`;
   return API(url);
 };

@@ -1,7 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from "react";
 import Card from "antd/lib/card";
-import Avatar from "antd/lib/avatar/avatar";
 import Meta from "antd/lib/card/Meta";
 import axios from "axios";
 import { ItemType, PokemonType } from "../../api";
@@ -9,6 +8,7 @@ import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setStorePokemon } from "./SingleCard.slice";
 import { capitalizeFirstLetter } from "../../utils";
+import { Statistic } from "antd";
 
 export interface SingleCardProps {
   item: ItemType;
@@ -35,6 +35,7 @@ export const SingleCard: React.FC<SingleCardProps> = ({ item }) => {
   const handlePokemonClick = () => {
     dispatch(setStorePokemon(pokemon));
     history.push(`pokemon/${pokemon?.id}`);
+    window.scrollTo({ top: 0 });
   };
 
   return pokemon ? (
@@ -50,7 +51,7 @@ export const SingleCard: React.FC<SingleCardProps> = ({ item }) => {
           {showBall && (
             <>
               <div className="ballTop sha" />
-              <div className="ballBottom shadow-lg" />
+              <div className="ballBottom shadow-xl" />
               <div className="ballCenter" />
             </>
           )}
@@ -63,8 +64,19 @@ export const SingleCard: React.FC<SingleCardProps> = ({ item }) => {
       }
     >
       <Meta
-        avatar={<Avatar src={pokemon?.sprites?.front_default} />}
-        title={`#${pokemon.id} ${capitalizeFirstLetter(pokemon.name)}`}
+        title={
+          <>
+            <Statistic
+              title="Number"
+              value={`#${pokemon.id}`}
+              className="mb-2"
+            />
+            <Statistic
+              title="Name"
+              value={capitalizeFirstLetter(pokemon.name)}
+            />
+          </>
+        }
       />
     </Card>
   ) : (
