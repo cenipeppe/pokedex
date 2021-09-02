@@ -1,4 +1,4 @@
-import { Button } from "antd";
+import { Button, Tooltip } from "antd";
 import React, { useState } from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -10,7 +10,7 @@ import { RootState } from "../app/rootReducer";
 import { Loader, LoaderSize } from "../components";
 import { Pokemon } from "../components/Pokemon/Pokemon";
 import { setStorePokemon } from "../components/SingleCard/SingleCard.slice";
-// import { RootState } from "../app/rootReducer";
+import { GiPreviousButton, GiNextButton } from "react-icons/gi";
 
 type PokemonPageParams = {
   id: string;
@@ -51,27 +51,31 @@ export const PokemonPage: React.FC = () => {
 
   return (
     <div className="page">
-      <div className="flex justify-between items-center gap-4">
+      <div className="flex flex-wrap justify-between items-center gap-4">
+        <Tooltip title="Go to the previous pokemon">
+          <Button
+            className="bg-blue-light text-yellow-primary shadow-xl"
+            onClick={handlePrevPokemon}
+            disabled={Number(id) === 1}
+          >
+            <GiPreviousButton />
+          </Button>
+        </Tooltip>
         <Button
-          className="bg-blue-light text-yellow-primary shadow-lg"
-          onClick={handlePrevPokemon}
-          disabled={Number(id) === 1}
-        >
-          Previous Pokemon
-        </Button>
-        <Button
-          className="bg-blue-light text-yellow-primary shadow-lg"
+          className="bg-blue-light text-yellow-primary shadow-xl"
           onClick={handleBackToHome}
         >
           Back to Home
         </Button>
-        <Button
-          className="bg-blue-light text-yellow-primary shadow-lg"
-          onClick={handleNextPokemon}
-          disabled={Number(id) === 898}
-        >
-          NextPokemon
-        </Button>
+        <Tooltip title="Go to the next pokemon">
+          <Button
+            className="bg-blue-light text-yellow-primary shadow-xl"
+            onClick={handleNextPokemon}
+            disabled={Number(id) === 898}
+          >
+            <GiNextButton />
+          </Button>
+        </Tooltip>
       </div>
       {pokemon && !loading && <Pokemon pokemon={pokemon} />}
       {loading && <Loader size={LoaderSize.xxl} />}

@@ -9,7 +9,7 @@ export const Pokemon: React.FC<PokemonProps> = ({ pokemon }) => {
   return (
     <div
       className="w-full h-full bg-yellow-primary border-4 border-yellow-dirty
-     rounded-t-md flex flex-wrap justify-between items-center"
+     rounded-3xl flex flex-wrap justify-between items-center"
     >
       <div className="p-4 flex flex-col gap-2">
         <div>
