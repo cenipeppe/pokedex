@@ -2,6 +2,7 @@ import React from "react";
 import { Provider } from "react-redux";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { Header } from "../components";
+import { Footer } from "../components/Footer/Footer";
 import { HomePage } from "../pages/HomePage";
 import { PokemonPage } from "../pages/PokemonPage";
 import store from "./store";
@@ -21,6 +22,7 @@ const App: React.FC = () => {
               <HomePage />
             </Route>
           </Switch>
+          <Footer />
         </BrowserRouter>
       </div>
     </Provider>

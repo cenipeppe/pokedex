@@ -36,7 +36,7 @@ export const HomePage: React.FC = () => {
   const handlePageChange = (page: number) => {
     dispatch(setPage(page));
     const start = (page - 1) * 20;
-    const limit = (start + 20) < 880 ? 20 : 18;
+    const limit = start + 20 < 880 ? 20 : 18;
     dispatch(setPokemonsLoading(true));
     dispatch(loadPokemons(start, limit));
   };
@@ -55,7 +55,7 @@ export const HomePage: React.FC = () => {
   );
   const handleSearch = (input: string) => {
     setSearchLoading(true);
-    getPokemon(input)
+    getPokemon(input.toLowerCase())
       .then((res) => {
         dispatch(setStorePokemon(res));
         history.push(`/pokemon/${res.id}`);

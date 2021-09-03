@@ -30,7 +30,7 @@ export const PokemonPage: React.FC = () => {
       setPokemon(pkmn);
     } else {
       setLoading(true);
-      getPokemon(Number(id))
+      getPokemon(id)
         .then((res) => setPokemon(res))
         .finally(() => setLoading(false));
     }
