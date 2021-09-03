@@ -33,10 +33,10 @@ export const HomePage: React.FC = () => {
     dispatch(loadPokemons((pageNumber - 1) * 20));
   }, []);
 
-  const onPageChange = (page: number) => {
+  const handlePageChange = (page: number) => {
     dispatch(setPage(page));
     const start = (page - 1) * 20;
-    const limit = start + 20 < 898 ? 20 : 18;
+    const limit = (start + 20) < 880 ? 20 : 18;
     dispatch(setPokemonsLoading(true));
     dispatch(loadPokemons(start, limit));
   };
@@ -47,7 +47,7 @@ export const HomePage: React.FC = () => {
       current={pageNumber}
       pageSize={20}
       total={900}
-      onChange={onPageChange}
+      onChange={handlePageChange}
       disabled={loading}
       responsive
       showSizeChanger={false}
